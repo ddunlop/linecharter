@@ -1,0 +1,63 @@
+path {
+  stroke-width: 7;
+  fill: none;
+}
+
+#legend>.label {
+  margin-right:1em;
+  -webkit-user-select: none;
+}
+
+path.blue {
+  stroke: steelblue; // hsl(207, 44%, 49%)
+}
+
+#legend .blue {
+  background-color: steelblue;
+}
+
+path.green {
+  stroke: darkseagreen;
+}
+
+#legend .green {
+  background-color: darkseagreen;
+}
+
+path.red {
+  stroke: mediumvioletred;
+}
+
+#legend .red {
+  background-color: mediumvioletred;
+}
+
+
+path.orchid {
+  stroke: mediumorchid;
+}
+
+#legend .orchid {
+  background-color: mediumorchid;
+}
+
+path.hsl {
+  stroke: hsl(200, 24%, 49%);
+}
+
+#legend .hsl {
+  background-color: hsl(200, 24%, 49%);
+}
+
+line {
+  stroke: black;
+}
+
+text {
+  font-family: Arial;
+  font-size: 9pt;
+}
+
+.hidden {
+  display:none;
+}
