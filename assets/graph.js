@@ -62,12 +62,8 @@ function draw(data) {
     if("time" === key) continue;
     var line = d3.svg.line()
       .x(function(d,i) { return x(d.time); })
-      .y(function(d) {
-        if(key in d) return y(d[key]);
-        return y(0);
-      });
+      .y(function(d) { return y(d[key]); });
 
-console.log(key);
     color_map[key] = colors[color_value++];
     if(color_value>=colors.length) color_value = 0;
     
@@ -75,9 +71,28 @@ console.log(key);
       data.legend[key] = {id:key,text:key};
     }
     
-//    console.log(key, color_map, data.legend);
+    var subpoints = []
+    for(var p=0,length=data.points.length;p<length;p++) {
+      if(isNaN(data.points[p][key])) {
+        if(subpoints.length) {
+          addPath(subpoints, key);
+          subpoints = [];
+        }
+      }
+      else {
+        subpoints.push(data.points[p]);
+      }
+    }
+    if(subpoints.length) {
+      addPath(subpoints, key);
+      vis.append("svg:path")
+        .attr("d", line(subpoints))
+        .attr("class", color_map[key] + " " + data.legend[key].id);
+    }
+  }
+  function addPath(points, key) {
     vis.append("svg:path")
-      .attr("d", line(data.points))
+      .attr("d", line(points))
       .attr("class", color_map[key] + " " + data.legend[key].id);
   }
   
